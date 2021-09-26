@@ -1,0 +1,14 @@
+{% import 'bootstrap/wtf.html' as wtf %}
+{% extends 'layout.html' %}
+{% block content %}
+{% include 'header.html' %}
+{% include 'menu.html' %}
+<main>
+    <div class="form-container">
+        <form action="" method="POST">
+            {% block form_content %}
+            {% endblock %}
+        </form>
+    </div>
+</main>
+{% endblock %}
