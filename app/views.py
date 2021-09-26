@@ -73,3 +73,9 @@ def login():
     
     return render_template('login.html', form=form)
 
+'''
+user's account/profile page
+'''
+@app.route('/account')
+def get_account():
+    return render_template('account.html')

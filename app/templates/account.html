@@ -1,0 +1,16 @@
+{% extends 'layout.html' %}
+{% import 'macros.html' as macro %}
+{% block content %}
+<main class="container">
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <div class="alert alert-{{ category }}">{{ message }}</div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+    <section class="account-container">
+        <h1>account page</h1>
+    </section>
+</main>
+{% endblock %}
