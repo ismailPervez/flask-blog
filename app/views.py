@@ -73,9 +73,18 @@ def login():
     
     return render_template('login.html', form=form)
 
+# route for logging out user
+@app.route("/logout")
+def logout():
+    logout_user()
+    return redirect(url_for('home'))
+
 '''
 user's account/profile page
 '''
 @app.route('/account')
+@login_required
 def get_account():
     return render_template('account.html')
+
+
