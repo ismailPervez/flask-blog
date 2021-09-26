@@ -44,6 +44,16 @@ class RegistrationForm(FlaskForm):
         if user:
             raise ValidationError("email is already taken!")
 
+class LoginForm(FlaskForm):
+    username = StringField('username', validators=[
+        DataRequired(),
+        Length(min=3, max=30)
+    ])
+
+    password = PasswordField('password', validators=[DataRequired()])
+
+    submit = SubmitField('log in')
+
 # create new post article form
 class CreatePost(FlaskForm):
     title = StringField('title', validators=[
