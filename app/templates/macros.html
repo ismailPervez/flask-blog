@@ -20,11 +20,11 @@
             <small>#{{ tag }}</small>
         {% endfor %}
     </div>
-    {% if deleteBtn == 'true' %}
-        <a href="/delete/{{ post_id }}" id="delete-btn" class="btn btn-danger">delete</a>
-    {% endif %}
     <div class="see-more">
         <a href="/full-post/{{ post_id }}" >read more...</a>
     </div>
+    {% if deleteBtn == 'true' %}
+        <a href="/delete/{{ post_id }}" id="delete-btn" class="btn btn-danger">delete</a>
+    {% endif %}
 </div>
 {% endmacro %}

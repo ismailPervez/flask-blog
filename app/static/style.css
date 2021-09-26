@@ -161,9 +161,10 @@ form {
     grid-template-columns: 1fr 1fr;
 }
 
-.account-container .card {
+.account-container > .card {
     display: grid;
     grid-template-columns: 15% 85%;
+    height: max-content;
 }
 
 .account-container .card .img-container {
@@ -182,4 +183,9 @@ form {
     display: grid;
     place-items: center;
     font-size: 30px;
+}
+
+.account-container .posts {
+    height: calc(100vh - 120px);
+    overflow-y: scroll;
 }
