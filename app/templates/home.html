@@ -1,4 +1,29 @@
 {% extends 'layout.html' %}
 {% block content %}
-<h1>home</h1>
+<main class="container">
+    <section class="intro">
+        <div class="img-container">
+            <img src="{{ url_for('static', filename='assets/header.jpg') }}" alt="code">
+        </div>
+        <article>
+            <h1>welcome to the dev blog</h1>
+            <p>
+                the web dev blog is a blogging platform for developers, where developers
+                can learn more about computer programming using the latest technologies.
+                 topics like networking and artificial intelligence and even tech news 
+                 through articles. 
+            </p>
+            <p>
+                Interact with us. Like it, give it a thumbs up, express yourself through 
+                comments.
+            </p>
+            <p>
+                get started with us
+                <div class="sign-up-btn">
+                    <a href="" class="btn btn-primary">sign up</a>
+                </div>
+            </p>
+        </article>
+    </section>
+</main>
 {% endblock %}
