@@ -71,7 +71,7 @@ class CreatePost(FlaskForm):
     '''
     tags = StringField('tags', validators=[
         DataRequired(),
-        Length(min=20, max=100)
+        Length(min=10, max=100)
     ])
 
     submit = SubmitField('create pitch')

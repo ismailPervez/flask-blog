@@ -1,0 +1,54 @@
+{% extends 'formbase.html' %}
+{% block form_content %}
+<h2>create new post</h2>
+<p>logged in as {{ current_user.username }}</p>
+{{ form.hidden_tag() }}
+<div class="form-group">
+    {{ form.title.label(class="form-control-label") }}
+    <!-- error handling -->
+    {% if form.title.errors %}
+        {{ form.title(class="form-control is-invalid") }}
+        <div class="invalid-feedback">
+            {% for error in form.title.errors %}
+                <span class="error">{{ error }}</span>
+            {% endfor %}
+        </div>
+    {% else %}
+        {{ form.title(class="form-control") }}
+    {% endif %}
+</div>
+<div class="form-group">
+    {{ form.content.label(class="form-control-label") }}
+    <!-- error handling -->
+    {% if form.content.errors %}
+        {{ form.content(class="md-textarea form-control is-invalid") }}
+        <div class="invalid-feedback">
+            {% for error in form.content.errors %}
+                <span class="error">{{ error }}</span>
+            {% endfor %}
+        </div>
+    {% else %}
+        {{ form.content(class="md-textarea form-control") }}
+    {% endif %}
+</div>
+<div class="form-group">
+    {{ form.tags.label(class="form-control-label") }}
+    <!-- error handling -->
+    {% if form.tags.errors %}
+        {{ form.tags(class="form-control is-invalid") }}
+        <div class="invalid-feedback">
+            {% for error in form.tags.errors %}
+                <span class="error">{{ error }}</span>
+            {% endfor %}
+        </div>
+    {% else %}
+        {{ form.tags(class="form-control") }}
+    {% endif %}
+</div>
+<div class="form-group">
+    {{ form.submit(class="btn btn-primary") }}
+</div>
+<div id="timer">
+    <h4></h4>
+</div>
+{% endblock %}

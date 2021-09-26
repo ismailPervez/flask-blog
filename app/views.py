@@ -110,7 +110,7 @@ def create():
         db.session.commit()
 
         flash('post created successfully', 'success')
-        return redirect(url_for("account"))
+        return redirect(url_for("get_account"))
 
     else:
         print('not validated')
