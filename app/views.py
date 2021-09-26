@@ -88,3 +88,31 @@ def get_account():
     return render_template('account.html')
 
 
+@app.route("/create", methods=["GET", "POST"])
+def create():
+    form = CreatePost()
+    if form.validate_on_submit():
+        title = form.title.data
+        content = form.content.data
+        # the tags need to be JSON serializable before we store them in the database
+        tags = form.tags.data.split(' ')
+        # initial upvotes and downvotes are 0
+        post = Post(
+            title=title,
+            content=content,
+            tags=str(tags),
+            upvotes=0,
+            downvotes=0,
+            user_id=current_user.id
+        )
+
+        db.session.add(post)
+        db.session.commit()
+
+        flash('post created successfully', 'success')
+        return redirect(url_for("account"))
+
+    else:
+        print('not validated')
+
+    return render_template("createpost.html", form=form)
