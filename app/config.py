@@ -2,7 +2,7 @@ import os
 
 class Config(object):
     SECRET_KEY=os.environ.get('SECRET_KEY')
-    SQLALCHEMY_DATABASE_URI='sqlit:///site.db'
+    SQLALCHEMY_DATABASE_URI='sqlite:///site.db'
 
 class DevConfig(Config):
     DEBUG=True

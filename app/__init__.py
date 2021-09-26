@@ -14,3 +14,4 @@ Bootstrap(app)
 
 # other imports that depend on the variables above
 from app import views
+from app import models
