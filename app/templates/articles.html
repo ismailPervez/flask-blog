@@ -1,0 +1,22 @@
+{% extends 'layout.html' %}
+{% import 'macros.html' as macro %}
+{% block content %}
+<main class="container">
+    <section class="latest-posts">
+        <h2>latest python posts</h2>
+        <div class="posts-container">
+            {{ macro.render_article(1, 'title', 'username', 'content', 7, 0, ['tags']) }}
+            {{ macro.render_article(1, 'title', 'username', 'content', 7, 0, ['tags']) }}
+            {{ macro.render_article(1, 'title', 'username', 'content', 7, 0, ['tags']) }}
+        </div>
+    </section>
+    <section class="latest-posts">
+        <h2>latest javascript posts</h2>
+        <div class="posts-container">
+            {{ macro.render_article(1, 'title', 'username', 'content', 7, 0, ['tags']) }}
+            {{ macro.render_article(1, 'title', 'username', 'content', 7, 0, ['tags']) }}
+            {{ macro.render_article(1, 'title', 'username', 'content', 7, 0, ['tags']) }}
+        </div>
+    </section>
+</main>
+{% endblock %}

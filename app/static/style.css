@@ -74,6 +74,10 @@ main .intro {
     background-color: var(--bg-color);
 }
 
+.latest-posts {
+    margin-bottom: 2%;
+}
+
 .posts-container {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
