@@ -1,8 +1,9 @@
 from app import app, db, mail, bcrypt
-from flask import render_template, url_for, redirect, flash
+from flask import render_template, url_for, redirect, flash, request
 from app.forms import RegistrationForm, CreatePost, LoginForm
 from flask_mail import Message
 from app.models import User, Post
+from flask_login import login_user, current_user, logout_user, login_required
 
 '''
 this is the home route - where the user first lands 
@@ -51,8 +52,24 @@ def sign_up():
 
     return render_template('register.html', form=form)
 
-@app.route('/login')
+@app.route('/login', methods=["GET", "POST"])
 def login():
     form = LoginForm()
+    if form.validate_on_submit():
+        username = form.username.data
+        password = form.password.data
+
+        user = User.query.filter_by(username=username).first()
+        if user and bcrypt.check_password_hash(user.password, password):
+            # check if the url has a parameter - next
+            next_route = request.args.get('next')
+            login_user(user)
+            # print("successfully logged in as: ", current_user.username)
+            flash(f'successfully logged in as {current_user.username}', 'success')
+            return redirect(next_route) if next_route else redirect(url_for('home'))
+
+        flash('login unsuccessful, please check the username or password', 'danger')
+
+    
     return render_template('login.html', form=form)
 
