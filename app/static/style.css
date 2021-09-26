@@ -54,6 +54,7 @@ main .intro {
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-gap: 2%;
+    margin-bottom: 3%;
 }
 
 .img-container {

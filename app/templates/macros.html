@@ -1,0 +1,30 @@
+{% macro  render_article(post_id, title, username, content, upvotes, downvotes, tags, deleteBtn='false') %}
+<div class="card" id="post-{{ post_id }}">
+    <h3>{{ title }}</h3>
+    <small>- {{ username }}</small>
+    <p>
+       {{ content }}
+    </p>
+    <div class="vote-btns">
+        <p>
+            <i class="far fa-thumbs-up"></i>
+            <span class="upvote-count">{{ upvotes }}</span>
+        </p>
+        <p>
+            <i class="far fa-thumbs-down"></i>
+            <span class="downvote-count">{{ downvotes }}</span>
+        </p>
+    </div>
+    <div class="tags">
+        {% for tag in tags %}
+            <small>#{{ tag }}</small>
+        {% endfor %}
+    </div>
+    {% if deleteBtn == 'true' %}
+        <a href="/delete/{{ post_id }}" id="delete-btn" class="btn btn-danger">delete</a>
+    {% endif %}
+    <div class="see-more">
+        <a href="/full-post/{{ post_id }}" >see post</a>
+    </div>
+</div>
+{% endmacro %}
