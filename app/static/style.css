@@ -19,11 +19,7 @@ h1, h2, h3 {
 }
 
 a {
-    color: whitesmoke;
-}
-
-a:hover {
-    color: white;
+    color: var(--bg-color);
 }
 
 header {
@@ -44,6 +40,14 @@ header nav {
     display: flex;
     align-items: center;
     justify-content: space-between;
+}
+
+header nav a {
+    color: whitesmoke;
+}
+
+header nav a:hover {
+    color: white;
 }
 
 main.container {
@@ -126,4 +130,27 @@ main .intro {
     margin-top: 3%;
     margin-left: 3%;
 }
-    
+
+.form-container {
+    display: grid;
+    place-items: center;
+}
+
+form {
+    background-color: var(--bg-dark);
+    min-width: 50%;
+    text-align: center;
+    min-height: 400px;
+    border-radius: 4px;
+    padding: 0% 3%;
+}
+
+.form-control {
+    background-color: transparent;
+    color: black;
+}
+
+.error {
+    color: red;
+    font-weight: bold;
+}

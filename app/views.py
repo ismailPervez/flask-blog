@@ -24,3 +24,7 @@ def sign_up():
     form = RegistrationForm()
     return render_template('register.html', form=form)
 
+@app.route('/login')
+def login():
+    return "login"
+
