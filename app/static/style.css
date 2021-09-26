@@ -74,3 +74,52 @@ main .intro {
     background-color: var(--bg-color);
 }
 
+.posts-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.card {
+    padding: 2%;
+    background-color: whitesmoke;
+    border-radius: 10px;
+    margin: 2%;
+    color: black;
+}
+    
+.card .vote-btns {
+    margin: 3% 0;
+    display: flex;
+}
+
+.vote-btns i {
+    padding: 2%;
+    font-size: 17px;
+    cursor: pointer;
+}
+
+.card .tags {
+    display: flex;
+}
+
+.tags small {
+    padding: 1%;
+    border-radius: 3px;
+    color: white;
+    margin-left: 2%;
+    background-color: var(--bg-color);
+}
+    
+.see-more {
+    padding-top: 3%;
+}
+
+.see-more a {
+    color: var(--bg-color);
+}
+
+.card #delete-btn {
+    margin-top: 3%;
+    margin-left: 3%;
+}
+    

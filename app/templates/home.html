@@ -29,15 +29,9 @@
     <section class="latest-posts">
         <h2>latest posts</h2>
         <div class="posts-container">
-            <article>
-                <h3>post title</h3>
-                <small>- author</small>
-                <p>
-                    simple description here...
-                </p>
-                <div class="votes">upvote 1: donvote 3</div>
-                <a href="">read more...</a>
-            </article>
+            {{ macro.render_article(1, 'title', 'username', 'content', 7, 0, ['tags']) }}
+            {{ macro.render_article(1, 'title', 'username', 'content', 7, 0, ['tags']) }}
+            {{ macro.render_article(1, 'title', 'username', 'content', 7, 0, ['tags']) }}
         </div>
     </section>
 </main>
