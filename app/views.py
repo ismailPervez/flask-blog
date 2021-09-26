@@ -35,22 +35,19 @@ def sign_up():
         db.session.add(user)
         db.session.commit()
 
-        print("account created successfully!")
+        # print("account created successfully!")
         flash('account created successfully', 'success')
 
         msg = Message("welcome to club review", sender="noreply@clubreview.com", recipients=[form.email.data])
-        msg.body = f'''
-            welcome to club review
-            Hi {form.username.data},
-            welcome to club review. thanks for joining our ever growing society
+        msg.html = f'''
+            <h1>welcome to club review</h1>
+            <p>Hi {form.username.data},</p>
+            <p>welcome to club review. thanks for joining our ever growing society</p>
         '''
         
         mail.send(msg)
         return redirect(url_for('home')) # you pass in the view function name and not the 
         # route name
-    else:
-        print('account NOT created')
-        flash('account not created', 'error')
 
     return render_template('register.html', form=form)
 

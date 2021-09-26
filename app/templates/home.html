@@ -2,6 +2,13 @@
 {% import 'macros.html' as macro %}
 {% block content %}
 <main class="container">
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <div class="alert alert-{{ category }}">{{ message }}</div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
     <section class="intro">
         <div class="img-container">
             <img src="{{ url_for('static', filename='assets/header.jpg') }}" alt="code">
