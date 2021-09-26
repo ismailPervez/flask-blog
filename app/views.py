@@ -1,3 +1,4 @@
+import flask
 from app import app, db, mail, bcrypt
 from flask import render_template, url_for, redirect, flash, request
 from app.forms import RegistrationForm, CreatePost, LoginForm
@@ -130,3 +131,17 @@ def create():
         print('not validated')
 
     return render_template("createpost.html", form=form)
+
+
+'''
+view to delete each post
+'''
+@app.route('/delete/<int:post_id>', methods=["GET", "DELETE"])
+def delete_post(post_id):
+    # check if the post belongs to the current user before deleting it
+    post = Post.query.filter_by(id=post_id).first()
+    if current_user.id == post.user_id:
+        db.session.delete(post)
+        db.session.commit()
+        flash('post deleted successfully', 'success')
+    return redirect(url_for('get_account'))
