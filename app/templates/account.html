@@ -17,20 +17,34 @@
                 </div>
             </div>
             <div class="profile-desc">
-                <p>username: ismailpervez</p>
-                <p>email: pervez@gmail.com</p>
-                <p>posts: 5</p>
-                <p>upvotes: 400 downvotes: 10</p>
-                <a href="{{ url_for('create') }}" class="btn btn-primary">create post</a>
+                <p>username: {{ current_user.username }}</p>
+                <p>email: {{ current_user.email }}</p>
+                <p>current posts: {{ posts | count }} posts</p>
+                <h4>total votes</h4>
+                <div class="votes">
+                    <p>
+                        <i class="far fa-thumbs-up"></i>
+                        {{ upvotes }}
+                    </p>
+                    <p>
+                        <i class="far fa-thumbs-down"></i>
+                        {{ downvotes }}
+                    </p>
+                </div>
+                <div class="action-btns">
+                    <a class="btn btn-primary" href="/create">create pitch</a>
+                </div>
+                <p>
+                    {% for tag in tags %}
+                        <small>{{ tag }}</small>
+                    {% endfor %}
+                </p>
             </div>
         </div>
         <div class="posts">
-            {{ macro.render_article(1, 'title', 'username', 'content', 7, 0, ['tags'], 'true') }}
-            {{ macro.render_article(1, 'title', 'username', 'content', 7, 0, ['tags'], 'true') }}
-            {{ macro.render_article(1, 'title', 'username', 'content', 7, 0, ['tags'], 'true') }}
-            {{ macro.render_article(1, 'title', 'username', 'content', 7, 0, ['tags'], 'true') }}
-            {{ macro.render_article(1, 'title', 'username', 'content', 7, 0, ['tags'], 'true') }}
-            {{ macro.render_article(1, 'title', 'username', 'content', 7, 0, ['tags'], 'true') }}
+            {% for post in posts %}
+                {{ macro.render_article(post.id, post.title, current_user.username ,post.content, post.upvotes, post.downvotes, post.tags, 'true') }}
+            {% endfor %}
         </div>
     </section>
 </main>

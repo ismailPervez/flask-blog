@@ -190,6 +190,13 @@ form {
     overflow-y: scroll;
 }
 
+.profile-desc .votes {
+    display: flex;
+    width: 30%;
+    align-items: center;
+    justify-content: space-between;
+}
+
 .md-textarea {
     min-height: 180px;
     resize: none;

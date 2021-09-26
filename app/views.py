@@ -4,6 +4,7 @@ from app.forms import RegistrationForm, CreatePost, LoginForm
 from flask_mail import Message
 from app.models import User, Post
 from flask_login import login_user, current_user, logout_user, login_required
+import ast
 
 '''
 this is the home route - where the user first lands 
@@ -85,7 +86,20 @@ user's account/profile page
 @app.route('/account')
 @login_required
 def get_account():
-    return render_template('account.html')
+    user = User.query.filter_by(username=current_user.username).first()
+    all_posts = user.posts
+    
+    total_upvote_count = 0
+    total_downvote_count = 0
+    for post in all_posts:
+        # this method converts a string representation of a list into a list
+        post.tags = ast.literal_eval(post.tags)
+        total_upvote_count += post.upvotes
+        total_downvote_count += post.downvotes
+
+    print(total_upvote_count)
+    print(total_downvote_count)
+    return render_template('account.html', posts=all_posts, upvotes=total_upvote_count, downvotes=total_downvote_count)
 
 
 @app.route("/create", methods=["GET", "POST"])
