@@ -1,0 +1,17 @@
+@import url('https://fonts.googleapis.com/css2?family=Philosopher&family=Poppins:wght@300&display=swap');
+
+:root {
+    --header-font: 'Philosopher', sans-serif;
+    --text-font: 'Poppins', sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: var(--text-font);
+}
+
+h1, h2, h3 {
+    font-family: var(--header-font);
+}
