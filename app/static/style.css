@@ -154,3 +154,32 @@ form {
     color: red;
     font-weight: bold;
 }
+
+/* account page */
+.account-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.account-container .card {
+    display: grid;
+    grid-template-columns: 15% 85%;
+}
+
+.account-container .card .img-container {
+    display: grid;
+    place-items: center;
+}
+
+.account-container .card .img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: brown;
+    color: white;
+    text-align: center;
+    font-weight: bold;
+    display: grid;
+    place-items: center;
+    font-size: 30px;
+}
