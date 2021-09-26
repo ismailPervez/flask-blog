@@ -3,6 +3,7 @@ from flask_sqlalchemy import SQLAlchemy
 from app.config import config_options
 from flask_bootstrap import Bootstrap
 from flask_mail import Mail
+from flask_bcrypt import Bcrypt
 
 # app initialization
 app = Flask(__name__)
@@ -14,6 +15,8 @@ db = SQLAlchemy(app)
 Bootstrap(app)
 # flask mail initialization
 mail = Mail(app)
+# bcrypt initialization
+bcrypt = Bcrypt(app)
 
 # other imports that depend on the variables above
 from app import views
