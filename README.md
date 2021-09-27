@@ -1,6 +1,8 @@
 # The Dev Blog
 a blogging web application where users can also sign up and write their own blogs
 
+live link [here](http://flask-dev-blog.herokuapp.com/)
+
 # description
 the dev blog is a blogging web application that enables users to read blog post and write their
 own articles, all they need to do is sign up.
@@ -14,8 +16,6 @@ this web application is developed using the following technologies:
     * flask
 * database
     * sql
-
-
 
 # bugs and solutions
 #### sqlalchemy.exc.NoSuchModuleError: Can't load plugin: sqlalchemy.dialects:sqlit

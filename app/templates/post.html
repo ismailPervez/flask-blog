@@ -11,7 +11,7 @@
     {% endwith %}
     <section>
         <h1>{{ post.title }}</h1>
-        <small>- username</small>
+        <small>- {{ post.user.username }}</small>
         <p>{{ post.content }}</p>
     </section>
 </main>
