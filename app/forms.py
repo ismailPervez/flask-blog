@@ -63,7 +63,7 @@ class CreatePost(FlaskForm):
 
     content = StringField('content', validators=[
         DataRequired(),
-        Length(min=20, max=255)
+        Length(min=20, max=400)
     ], widget=TextArea())
 
     '''

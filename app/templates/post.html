@@ -1,6 +1,5 @@
-{% import 'bootstrap/wtf.html' as wtf %}
 {% extends 'layout.html' %}
-{% include 'menu.html' %}
+{% import 'macros.html' as macro %}
 {% block content %}
 <main class="container">
     {% with messages = get_flashed_messages(with_categories=true) %}
@@ -10,11 +9,10 @@
             {% endfor %}
         {% endif %}
     {% endwith %}
-    <div class="form-container">
-        <form action="" method="POST">
-            {% block form_content %}
-            {% endblock %}
-        </form>
-    </div>
+    <section>
+        <h1>{{ post.title }}</h1>
+        <small>- username</small>
+        <p>{{ post.content }}</p>
+    </section>
 </main>
 {% endblock %}

@@ -142,7 +142,6 @@ def login():
             # check if the url has a parameter - next
             next_route = request.args.get('next')
             login_user(user)
-            # print("successfully logged in as: ", current_user.username)
             flash(f'successfully logged in as {current_user.username}', 'success')
             return redirect(next_route) if next_route else redirect(url_for('home'))
 
@@ -174,8 +173,6 @@ def get_account():
         total_upvote_count += post.upvotes
         total_downvote_count += post.downvotes
 
-    print(total_upvote_count)
-    print(total_downvote_count)
     return render_template('account.html', posts=all_posts, upvotes=total_upvote_count, downvotes=total_downvote_count)
 
 
@@ -236,3 +233,10 @@ def update_post(post_id):
     db.session.commit()
 
     return "status: ok"
+
+# each blog post
+@app.route('/full-post/<int:post_id>')
+def get_post(post_id):
+    post = Post.query.filter_by(id=post_id).first()
+
+    return render_template('post.html', post=post)

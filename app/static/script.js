@@ -41,3 +41,17 @@ downvoteBtns.forEach(downvote_btn => {
         })     
     })
 })
+
+// toggle menu 
+var toggleMenuBtn = document.querySelector("header .fa-bars")
+var menu  = document.querySelector(".menu-container")
+var closeMenuBtn = document.querySelector(".menu-container .fa-times")
+
+// var menuStatus = false
+toggleMenuBtn.addEventListener("click", (event) => {
+    menu.classList.add("active")
+})
+
+closeMenuBtn.addEventListener("click", () => {
+    menu.classList.remove("active")
+})
