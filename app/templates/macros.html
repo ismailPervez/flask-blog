@@ -3,7 +3,7 @@
     <h3>{{ title }}</h3>
     <small>- {{ username }}</small>
     <p>
-       {{ content }}
+       {{ content | truncate(50, True, '...') }}
     </p>
     <div class="vote-btns">
         <p>

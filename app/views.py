@@ -200,9 +200,6 @@ def create():
         flash('post created successfully', 'success')
         return redirect(url_for("get_account"))
 
-    else:
-        print('not validated')
-
     return render_template("createpost.html", form=form)
 
 
