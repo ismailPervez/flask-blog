@@ -12,14 +12,90 @@ this is the home route - where the user first lands
 '''
 @app.route('/')
 def home():
-    return render_template('home.html')
+    post = Post.query.order_by(Post.id.desc()).limit(3).all()
+    latest_posts = []
+    users = []
+    for post in post:
+
+        user = User.query.filter_by(id=post.user_id).first()
+        users.append(user)
+
+        post = Post(
+            id=post.id,
+            title=post.title,
+            content=post.content,
+            upvotes=post.upvotes,
+            downvotes=post.downvotes,
+            tags=post.tags,
+            user_id=post.user_id
+        )
+        post.tags = ast.literal_eval(post.tags)
+        latest_posts.append(post)
+
+    return render_template('home.html', posts=latest_posts, users=users)
 
 '''
 this route will get the latest post in each category
 '''
 @app.route('/articles')
 def get_articles():
-    return render_template('articles.html')
+    # get latest python posts
+    python_posts = Post.query.order_by(Post.id.desc()).limit(15).all()
+
+    latest_python_posts = []
+    python_posts_users = []
+    for post in python_posts:
+        post = Post(
+            id=post.id,
+            title=post.title,
+            content=post.content,
+            upvotes=post.upvotes,
+            downvotes=post.downvotes,
+            tags=post.tags,
+            user_id=post.user_id
+        )
+        post.tags = ast.literal_eval(post.tags)
+        print(post.tags)
+
+        if 'python' in post.tags or 'pythonprogramming' in post.tags or 'pythoneer' in post.tags:
+            print('its a python post')
+            latest_python_posts.append(post)
+            user = User.query.filter_by(id=post.user_id).first()
+            python_posts_users.append(user)
+
+    if len(latest_python_posts) > 3:
+        latest_python_posts = latest_python_posts[:3]
+        python_posts_users = python_posts_users[:3]
+
+    # get latest js posts
+    js_posts = Post.query.order_by(Post.id.desc()).limit(15).all()
+
+    latest_js_posts = []
+    js_posts_users = []
+    for post in js_posts:
+        post = Post(
+            id=post.id,
+            title=post.title,
+            content=post.content,
+            upvotes=post.upvotes,
+            downvotes=post.downvotes,
+            tags=post.tags,
+            user_id=post.user_id
+        )
+        post.tags = ast.literal_eval(post.tags)
+        print(post.tags)
+
+        if 'js' in post.tags or 'javascript' in post.tags or 'ES6' in post.tags:
+            print('its a python post')
+            latest_js_posts.append(post)
+            user = User.query.filter_by(id=post.user_id).first()
+            js_posts_users.append(user)
+
+    if len(latest_js_posts) > 3:
+        latest_js_posts = latest_js_posts[:3]
+        js_posts_users = js_posts_users[:3]
+
+    return render_template('articles.html', python_posts=latest_python_posts, python_posts_users=python_posts_users, js_posts=latest_js_posts, js_posts_users=js_posts_users)
 
 '''
 if the user wants to sign up - accepts both GET and POST methods 
@@ -150,12 +226,12 @@ def delete_post(post_id):
 @app.route('/update/<int:post_id>', methods=['PUT'])
 @login_required
 def update_post(post_id):
-    review = Post.query.filter_by(id=post_id).first()
+    post = Post.query.filter_by(id=post_id).first()
     if "upvotes" in request.json:
-        review.upvotes = request.json["upvotes"]
+        post.upvotes = request.json["upvotes"]
 
     if "downvotes" in request.json:
-        review.downvotes = request.json["downvotes"]
+        post.downvotes = request.json["downvotes"]
 
     db.session.commit()
 

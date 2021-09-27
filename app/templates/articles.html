@@ -5,17 +5,17 @@
     <section class="latest-posts">
         <h2>latest python posts</h2>
         <div class="posts-container">
-            {{ macro.render_article(1, 'title', 'username', 'content', 7, 0, ['tags']) }}
-            {{ macro.render_article(1, 'title', 'username', 'content', 7, 0, ['tags']) }}
-            {{ macro.render_article(1, 'title', 'username', 'content', 7, 0, ['tags']) }}
+            {% for post in python_posts %}
+                {{ macro.render_article(post.id, post.title, python_posts_users[loop.index - 1].username, post.content, post.upvotes, post.downvotes, post.tags) }}
+            {% endfor %}
         </div>
     </section>
     <section class="latest-posts">
         <h2>latest javascript posts</h2>
         <div class="posts-container">
-            {{ macro.render_article(1, 'title', 'username', 'content', 7, 0, ['tags']) }}
-            {{ macro.render_article(1, 'title', 'username', 'content', 7, 0, ['tags']) }}
-            {{ macro.render_article(1, 'title', 'username', 'content', 7, 0, ['tags']) }}
+            {% for post in js_posts %}
+                {{ macro.render_article(post.id, post.title, js_posts_users[loop.index - 1].username, post.content, post.upvotes, post.downvotes, post.tags) }}
+            {% endfor %}
         </div>
     </section>
 </main>
