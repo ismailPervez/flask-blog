@@ -21,3 +21,23 @@ upvoteBtns.forEach(upvote_btn => {
         })     
     })
 })
+
+// downvoting
+downvoteBtns.forEach(downvote_btn => {
+    downvote_btn.addEventListener('click', (event) => {
+        var post = event.target.parentElement.parentElement.parentElement
+        var voteCountContainer = post.querySelector(".downvote-count")
+        var voteCount = parseInt(post.querySelector(".downvote-count").textContent)
+        voteCount += 1
+        voteCountContainer.textContent = voteCount
+        var post_id = parseInt(post.id.split('-')[1])
+        
+        fetch(`/update/${post_id}`, {
+            method: "PUT",
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({
+                "downvotes": voteCount
+            })
+        })     
+    })
+})
