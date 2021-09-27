@@ -10,3 +10,7 @@ the dev blog - in-depth easy programming tutorials
 {% include 'header.html' %}
 {% block content %}
 {% endblock %}
+{% block scripts %}
+{{ super() }}
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+{% endblock %}
