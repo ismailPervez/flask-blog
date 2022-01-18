@@ -74,4 +74,26 @@ class CreatePost(FlaskForm):
         Length(min=10, max=100)
     ])
 
-    submit = SubmitField('create pitch')
+    submit = SubmitField('create post')
+
+# create new post article form
+class UpdatePost(FlaskForm):
+    title = StringField('title', validators=[
+        DataRequired(),
+        Length(min=10, max=100)
+    ])
+
+    content = StringField('content', validators=[
+        DataRequired(),
+        Length(min=20, max=400)
+    ], widget=TextArea())
+
+    '''
+    make sure to inform the user to seperate the tags using spaces
+    '''
+    tags = StringField('tags', validators=[
+        DataRequired(),
+        Length(min=10, max=100)
+    ])
+
+    submit = SubmitField('update post')

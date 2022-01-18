@@ -1,7 +1,7 @@
 import flask
 from app import app, db, mail, bcrypt
 from flask import render_template, url_for, redirect, flash, request
-from app.forms import RegistrationForm, CreatePost, LoginForm
+from app.forms import RegistrationForm, CreatePost, LoginForm, UpdatePost
 from flask_mail import Message
 from app.models import User, Post
 from flask_login import login_user, current_user, logout_user, login_required
@@ -237,3 +237,37 @@ def get_post(post_id):
     post = Post.query.filter_by(id=post_id).first()
 
     return render_template('post.html', post=post)
+
+# update post
+@app.route('/update/post/<int:post_id>', methods=['GET', 'POST'])
+@login_required
+def update_post_content(post_id):
+    post = Post.query.get(post_id)
+    form = UpdatePost()
+    # default values when loading
+    if request.method == 'GET':
+        form.title.data = post.title
+        form.content.data = post.content
+        tags = ' '.join(ast.literal_eval(post.tags))
+        form.tags.data = tags
+
+        return render_template('updatepost.html', form=form)
+
+    else:
+        if form.validate_on_submit():
+            title = form.title.data
+            content = form.content.data
+            # the tags need to be JSON serializable before we store them in the database
+            tags = str(form.tags.data.split(' '))
+            # print(title)
+            # print(content)
+            # print(tags)
+            post.title = title
+            post.content = content
+            post.tags = tags
+
+            db.session.commit()
+
+            flash('post updated successfully', 'success')
+
+            return render_template('updatepost.html', form=form)

@@ -25,6 +25,8 @@
     </div>
     {% if deleteBtn == 'true' %}
         <a href="/delete/{{ post_id }}" id="delete-btn" class="btn btn-danger">delete</a>
+        <!-- take to update form -->
+        <a href="/update/post/{{ post_id }}" id="delete-btn" class="btn btn-primary">update</a>
     {% endif %}
 </div>
 {% endmacro %}
