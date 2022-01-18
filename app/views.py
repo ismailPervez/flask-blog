@@ -6,12 +6,15 @@ from flask_mail import Message
 from app.models import User, Post
 from flask_login import login_user, current_user, logout_user, login_required
 import ast
-
+import requests
 '''
 this is the home route - where the user first lands 
 '''
 @app.route('/')
 def home():
+    # get random quote
+    quote = requests.get('http://quotes.stormconsultancy.co.uk/random.json')
+    quote_in_json = quote.json()
     post = Post.query.order_by(Post.id.desc()).limit(3).all()
     latest_posts = []
     users = []
@@ -32,7 +35,7 @@ def home():
         post.tags = ast.literal_eval(post.tags)
         latest_posts.append(post)
 
-    return render_template('home.html', posts=latest_posts, users=users)
+    return render_template('home.html', posts=latest_posts, users=users, quote=quote_in_json)
 
 '''
 this route will get the latest post in each category
