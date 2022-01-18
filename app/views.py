@@ -259,9 +259,6 @@ def update_post_content(post_id):
             content = form.content.data
             # the tags need to be JSON serializable before we store them in the database
             tags = str(form.tags.data.split(' '))
-            # print(title)
-            # print(content)
-            # print(tags)
             post.title = title
             post.content = content
             post.tags = tags
