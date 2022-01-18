@@ -55,3 +55,15 @@ toggleMenuBtn.addEventListener("click", (event) => {
 closeMenuBtn.addEventListener("click", () => {
     menu.classList.remove("active")
 })
+
+// get quote
+window.onload = () => {
+    const quote = document.getElementById('quote')
+    const author = document.getElementById('author')
+    fetch('http://quotes.stormconsultancy.co.uk/random.json')
+        .then(res => res.json())
+        .then(data => {
+            quote.textContent = data.quote
+            author.textContent = data.author
+        })
+}
